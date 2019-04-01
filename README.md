@@ -2,8 +2,12 @@
 A facial recognition system utilizing the Haar Caascade facial classifier. The tools provided include everything needed to generate facial data, and complete the automatic training of an individual face. 
 
 ### Requirements
-pip install numpy
+python3
 
-pip install opencv-contrib-python
+pip 
 
-pip install pillow
+numpy
+
+opencv-contrib-python
+
+pillow

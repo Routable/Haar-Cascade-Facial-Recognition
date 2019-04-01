@@ -43,6 +43,7 @@ if trained_faces:
                 if row[1] == face_name:
                     exists = True
                     id = row[0]
+                    face_name_filename = id
 
         if not exists:
                 delay_print("\nYou are an unrecognized user. Adding you to the user database.")

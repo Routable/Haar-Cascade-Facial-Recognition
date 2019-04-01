@@ -5,12 +5,21 @@ A facial recognition system utilizing the Haar Caascade facial classifier. The t
 
 
 ### Requirements
-python3
+- python3
+- pip 
+- numpy
+- opencv-contrib-python
+- pillow
 
-pip 
+### Instructions
+**1)** Unzip the trainer.zip file (in the trainer folder) into the same directory. 
 
-numpy
+**2)** Installed the requirements listed above if you haven't already.
 
-opencv-contrib-python
+**3)** (If using Windows) using command prompt, navigate to the Haar-Cascade-Facial-Recognition directory. 
 
-pillow
+**4)** Run the faceial detection app by using the command "py face_detection.py". Keep in mind, your environmental value for "py" may be different.
+
+**5)** If you wish to train a model, use the "py face_data_generator.py" command and follow the prompt. Afterwards, use "py face_training.py" to generate the model with the data taken previously. 
+
+**6)** To view the results of the model process, simply run the "py face_detection.py" command. 

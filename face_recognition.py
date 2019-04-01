@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
-import os, csv
+import os
+import csv
 
 recognizer = cv2.face.LBPHFaceRecognizer_create()
 
@@ -30,8 +31,8 @@ with open('trainer/trained_individuals.csv') as csv_file:
     csv_reader = csv.reader(csv_file, delimiter=',')
 
     for row in csv_reader:
-        print(row[1])
-        names.append(row[1])
+        if row:
+            names.append(row[1])
 
 # Initialize and start realtime video capture
 cam = cv2.VideoCapture(0)
@@ -50,7 +51,7 @@ while True:
         gray,
         scaleFactor = 1.2,
         minNeighbors = 5,
-        minSize = (int(minW), int(minH)),
+        minSize=(int(minW), int(minH)),
        )
 
     for(x, y, w, h) in faces:
@@ -62,7 +63,8 @@ while True:
         cv2.rectangle(img, (x, y), (x + w, y + h), confidence_color_number, 2)
 
         # Check if confidence is less them 100 ==> "0" is perfect match
-        if (confidence < 100):
+        if confidence < 100:
+            print(names[id])
             id = names[id]
             confidence_color_number = round(100 - confidence)
             confidence = "  {0}%".format(round(100 - confidence))

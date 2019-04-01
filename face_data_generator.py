@@ -27,6 +27,7 @@ face_name = input().lower()
 
 # If our user file exists
 if trained_faces:
+
     with open('trainer/trained_individuals.csv') as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
 
@@ -36,17 +37,18 @@ if trained_faces:
         total = 0
 
         for row in csv_reader:
-            total += 0
+            total += 1
             # Set key (persons name) to their ID
-            if row[1] == face_name:
-                exists = True
-                id = row[0]
+            if row:
+                if row[1] == face_name:
+                    exists = True
+                    id = row[0]
 
         if not exists:
                 delay_print("\nYou are an unrecognized user. Adding you to the user database.")
                 with open('trainer/trained_individuals.csv', mode='a') as filewriter:
-                    filewriter = csv.writer(filewriter, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-                    new_id = total + 1
+                    filewriter = csv.writer(filewriter, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL, lineterminator='\n')
+                    new_id = total
                     filewriter.writerow([new_id, face_name])
                     face_name_filename = new_id
 

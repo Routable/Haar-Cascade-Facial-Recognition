@@ -22,4 +22,4 @@ A facial recognition system utilizing the Haar Caascade facial classifier. The t
 
 **5)** If you wish to train a model, use the "py face_data_generator.py" command and follow the prompt. Afterwards, use "py face_training.py" to generate the model with the data taken previously. 
 
-**6)** To view the results of the model process, simply run the "py face_detection.py" command. 
+**6)** To view the results of the model process, simply run the "py face_recognition.py" command. 

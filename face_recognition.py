@@ -77,7 +77,7 @@ while True:
         cv2.putText(img, str(confidence), (x+115,y-10), font, 1, color_confidence(confidence_color_number), 2)
 
     cv2.imshow('camera',img)
-    k = cv2.waitKey(10) & 0xff # Press 'ESC' for exiting video
+    k = cv2.waitKey(10) & 0xff
 
 
 cam.release()

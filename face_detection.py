@@ -7,7 +7,7 @@ faceCascade = cv2.CascadeClassifier('classifiers/haarcascade_frontalface_default
 smileCascade = cv2.CascadeClassifier('classifiers/haarcascade_smile.xml')
 face_label = "Face Detected"
 
-# Enable web camera + width and height.
+# Enable web camera, set width and height.
 cap = cv2.VideoCapture(0)
 cap.set(3,640) # set Width
 cap.set(4,480) # set Height
@@ -15,15 +15,18 @@ cap.set(4,480) # set Height
 while True:
     ret, img = cap.read()
 
-    # create a greyscale representation
+    # create a grey scale representation
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
     # Parameters for facial detection.
     faces = faceCascade.detectMultiScale(
-        gray,              #input grayscale image
-        scaleFactor=1.2,   #parameter specifying how much the image size shoudl be reduced at each image scale, used to create scale pyramid.
-        minNeighbors=5,    #  specifying how many neighbors each candidate rectangle should have, to retain it. Highe rnumber gives lower false positives.
-        minSize=(10, 10)   #minimum rectangler size to be considered a face.
+        gray,              # input gray scale image
+
+        scaleFactor=1.2,   # parameter specifying how much the image size should
+                           # be reduced at each image scale, used to create scale pyramid.
+        minNeighbors=5,    # specifying how many neighbors each candidate rectangle should
+                           # have, to retain it. Higher number gives lower false positives.
+        minSize=(10, 10)   # minimum rectangle size to be considered a face.
     )
 
     # marks detected faces with a rectangle.
@@ -47,14 +50,13 @@ while True:
         )
 
         for (xx, yy, ww, hh) in smile:
-            # Unccomment to show the facial positions relative to the individuals mouth.
-            # print(xx, yy, ww, hh)
             cv2.rectangle(roi_color, (xx, yy), (xx + ww, yy + hh), (0, 255, 0), 2)
 
     cv2.imshow('Facial Detection - Data Mining/Machine Learning',img)
 
     k = cv2.waitKey(30) & 0xff
-    if k == 27: # press 'ESC' to quit
+
+    if k == 27:
         break
 
 cap.release()

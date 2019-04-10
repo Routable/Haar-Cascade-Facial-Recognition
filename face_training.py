@@ -7,7 +7,7 @@ import os
 # Directory of our training images that we previously made.
 path = 'training_data'
 
-# Using the LBPH(LOCAL BINARY PATTERNS HISTOGRAMS) Face Recognizer that's included in OpenCV.
+# Using the LBPH (LOCAL BINARY PATTERNS HISTOGRAMS) Face Recognizer that's included in OpenCV.
 recognizer = cv2.face.LBPHFaceRecognizer_create()
 
 
@@ -25,7 +25,7 @@ def sort_pictures(string):
 # Marches through all of our images
 def march_through_images(path):
     images = [os.path.join(path,f) for f in os.listdir(path)]
-    faceSamples=[]
+    face_samples = []
     ids = []
     for img in images:
         open_image = Image.open(img)
@@ -36,9 +36,9 @@ def march_through_images(path):
         faces = detector.detectMultiScale(img_numpy)
 
         for (x, y, w, h) in faces:
-            faceSamples.append(img_numpy[y:y+h,x:x+w])
+            face_samples.append(img_numpy[y:y+h,x:x+w])
             ids.append(id)
-    return faceSamples, ids
+    return face_samples, ids
 
 
 print ("\nTraining images, please wait.")

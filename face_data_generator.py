@@ -1,7 +1,12 @@
-import cv2, os, time, sys, csv
+import cv2
+import os
+import time
+import sys
+import csv
 
 # File we store our previously trained individuals.
 trained_faces = os.path.isfile('trainer/trained_individuals.csv')
+
 
 # For cute text animations.
 def delay_print(s):
@@ -48,7 +53,9 @@ if trained_faces:
         if not exists:
                 delay_print("\nYou are an unrecognized user. Adding you to the user database.")
                 with open('trainer/trained_individuals.csv', mode='a') as filewriter:
-                    filewriter = csv.writer(filewriter, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL, lineterminator='\n')
+
+                    filewriter = csv.writer(filewriter, delimiter=',', quotechar='"',
+                                            quoting=csv.QUOTE_MINIMAL, lineterminator='\n')
                     new_id = total
                     filewriter.writerow([new_id, face_name])
                     face_name_filename = new_id
@@ -70,7 +77,7 @@ while True:
         cv2.rectangle(img, (x, y), (x + w, y + h), (124, 252, 0), 2)
         count += 1
 
-        # Save the captured image into the datasets folder
+        # Save the captured image into the training_data folder
         cv2.imwrite("training_data/person." + str(face_name_filename) + '.' + str(count) + ".jpg", gray[y:y+h,x:x+w])
 
         cv2.imshow('image', img)
@@ -86,5 +93,3 @@ while True:
 delay_print("\nTraining images added!")
 camera.release()
 cv2.destroyAllWindows()
-
-
